@@ -1,126 +1,60 @@
 import { useMemo } from "react";
 import PropTypes from "prop-types";
 
-
-const CookingSidebar = ({
-  wantToCook,
-  currentlyCooking,
-  onPreparing
-}) => {
-
-
+const CookingSidebar = ({ wantToCook, currentlyCooking, onPreparing }) => {
   // =================================
   // TOTAL PREPARATION TIME
   // =================================
 
   const totalTime = useMemo(() => {
-
-    return currentlyCooking.reduce(
-      (total, recipe) => {
-
-        return total +
-          parseInt(recipe.preparing_time);
-
-      },
-      0
-    );
-
+    return currentlyCooking.reduce((total, recipe) => {
+      return total + parseInt(recipe.preparing_time);
+    }, 0);
   }, [currentlyCooking]);
-
 
   // =================================
   // TOTAL CALORIES
   // =================================
 
   const totalCalories = useMemo(() => {
-
-    return currentlyCooking.reduce(
-      (total, recipe) => {
-
-        return total +
-          parseInt(recipe.calories);
-
-      },
-      0
-    );
-
+    return currentlyCooking.reduce((total, recipe) => {
+      return total + parseInt(recipe.calories);
+    }, 0);
   }, [currentlyCooking]);
 
-
   return (
-
     <aside className="sidebar">
-
-
       {/* =================================
           WANT TO COOK
       ================================= */}
 
       <div className="sidebar-section">
-
-        <h2>
-          Want to cook: {wantToCook.length}
-        </h2>
-
+        <h2>Want to cook: {wantToCook.length}</h2>
 
         <div className="sidebar-line"></div>
 
-
         <div className="table-header">
+          <span>Name</span>
 
-          <span>
-            Name
-          </span>
+          <span>Time</span>
 
-          <span>
-            Time
-          </span>
-
-          <span>
-            Calories
-          </span>
+          <span>Calories</span>
 
           <span></span>
-
         </div>
 
-
         {wantToCook.length === 0 ? (
-
-          <div className="empty-message">
-
-            No recipes added yet.
-
-          </div>
-
+          <div className="empty-message">No recipes added yet.</div>
         ) : (
-
           wantToCook.map((recipe, index) => (
+            <div className="cooking-row" key={recipe.recipe_id}>
+              <span className="row-number">{index + 1}</span>
 
-            <div
-              className="cooking-row"
-              key={recipe.recipe_id}
-            >
+              <span className="recipe-name-small">{recipe.recipe_name}</span>
 
-              <span className="row-number">
-                {index + 1}
-              </span>
+              <span>{recipe.preparing_time}</span>
 
-
-              <span className="recipe-name-small">
-                {recipe.recipe_name}
-              </span>
-
-
-              <span>
-                {recipe.preparing_time}
-              </span>
-
-
-              <span>
-                {recipe.calories}
-              </span>
-
+              <span>{recipe.calories}</span>
 
               <button
                 className="preparing-button"
@@ -128,133 +62,71 @@ const CookingSidebar = ({
               >
                 Preparing
               </button>
-
             </div>
-
           ))
-
         )}
-
       </div>
-
 
       {/* =================================
           CURRENTLY COOKING
       ================================= */}
 
       <div className="sidebar-section currently-section">
-
-        <h2>
-          Currently cooking: {currentlyCooking.length}
-        </h2>
-
+        <h2>Currently cooking: {currentlyCooking.length}</h2>
 
         <div className="sidebar-line"></div>
 
-
         <div className="current-header">
+          <span>Name</span>
 
-          <span>
-            Name
-          </span>
+          <span>Time</span>
 
-          <span>
-            Time
-          </span>
-
-          <span>
-            Calories
-          </span>
-
+          <span>Calories</span>
         </div>
 
-
         {currentlyCooking.length === 0 ? (
-
-          <div className="empty-message">
-
-            Nothing is currently cooking.
-
-          </div>
-
+          <div className="empty-message">Nothing is currently cooking.</div>
         ) : (
-
           currentlyCooking.map((recipe, index) => (
+            <div className="current-row" key={recipe.recipe_id}>
+              <span>{index + 1}</span>
 
-            <div
-              className="current-row"
-              key={recipe.recipe_id}
-            >
+              <span>{recipe.recipe_name}</span>
 
-              <span>
-                {index + 1}
-              </span>
+              <span>{recipe.preparing_time}</span>
 
-              <span>
-                {recipe.recipe_name}
-              </span>
-
-              <span>
-                {recipe.preparing_time}
-              </span>
-
-              <span>
-                {recipe.calories}
-              </span>
-
+              <span>{recipe.calories}</span>
             </div>
-
           ))
-
         )}
-
       </div>
-
 
       {/* =================================
           TOTAL
       ================================= */}
 
       <div className="total-section">
-
         <div>
-
-          <strong>
-            Total Time =
-          </strong>
-
+          <strong>Total Time =</strong>
           <br />
-
           {totalTime} minutes
-
         </div>
-
 
         <div>
-
-          <strong>
-            Total Calories =
-          </strong>
-
+          <strong>Total Calories =</strong>
           <br />
-
           {totalCalories} calories
-
         </div>
-
       </div>
-
     </aside>
   );
 };
-
 
 // ==============================
 // PROPTYPES
 // ==============================
 
 const recipeShape = PropTypes.shape({
-
   recipe_id: PropTypes.number.isRequired,
 
   recipe_image: PropTypes.string.isRequired,
@@ -263,30 +135,19 @@ const recipeShape = PropTypes.shape({
 
   short_description: PropTypes.string.isRequired,
 
-  ingredients: PropTypes.arrayOf(
-    PropTypes.string
-  ).isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
 
   preparing_time: PropTypes.string.isRequired,
 
-  calories: PropTypes.string.isRequired
-
+  calories: PropTypes.string.isRequired,
 });
 
-
 CookingSidebar.propTypes = {
+  wantToCook: PropTypes.arrayOf(recipeShape).isRequired,
 
-  wantToCook: PropTypes.arrayOf(
-    recipeShape
-  ).isRequired,
+  currentlyCooking: PropTypes.arrayOf(recipeShape).isRequired,
 
-  currentlyCooking: PropTypes.arrayOf(
-    recipeShape
-  ).isRequired,
-
-  onPreparing: PropTypes.func.isRequired
-
+  onPreparing: PropTypes.func.isRequired,
 };
-
 
 export default CookingSidebar;

@@ -10,15 +10,12 @@ import recipesData from "./data/recipes.json";
 
 import "./App.css";
 
-
 function App() {
-
   // ==============================
   // RECIPE DATA
   // ==============================
 
   const [recipes] = useState(recipesData);
-
 
   // ==============================
   // WANT TO COOK STATE
@@ -26,13 +23,11 @@ function App() {
 
   const [wantToCook, setWantToCook] = useState([]);
 
-
   // ==============================
   // CURRENTLY COOKING STATE
   // ==============================
 
   const [currentlyCooking, setCurrentlyCooking] = useState([]);
-
 
   // ==============================
   // SEARCH STATE
@@ -40,20 +35,17 @@ function App() {
 
   const [searchText, setSearchText] = useState("");
 
-
   // ==============================
   // TOAST STATE
   // ==============================
 
   const [toastMessage, setToastMessage] = useState("");
 
-
   // ==============================
   // TOAST FUNCTION
   // ==============================
 
   const showToast = (message) => {
-
     setToastMessage(message);
 
     setTimeout(() => {
@@ -61,16 +53,14 @@ function App() {
     }, 2500);
   };
 
-
   // ==============================
   // WANT TO COOK
   // ==============================
 
   const handleWantToCook = (recipe) => {
-
     // Check whether recipe already exists
     const alreadyAdded = wantToCook.some(
-      (item) => item.recipe_id === recipe.recipe_id
+      (item) => item.recipe_id === recipe.recipe_id,
     );
 
     if (alreadyAdded) {
@@ -78,10 +68,9 @@ function App() {
       return;
     }
 
-
     // Check whether recipe is already cooking
     const alreadyCooking = currentlyCooking.some(
-      (item) => item.recipe_id === recipe.recipe_id
+      (item) => item.recipe_id === recipe.recipe_id,
     );
 
     if (alreadyCooking) {
@@ -89,43 +78,29 @@ function App() {
       return;
     }
 
-
     // Add recipe
-    setWantToCook((previousRecipes) => [
-      ...previousRecipes,
-      recipe
-    ]);
+    setWantToCook((previousRecipes) => [...previousRecipes, recipe]);
   };
-
 
   // ==============================
   // PREPARING
   // ==============================
 
   const handlePreparing = (recipe) => {
-
     // Remove from Want to Cook
     setWantToCook((previousRecipes) =>
-      previousRecipes.filter(
-        (item) => item.recipe_id !== recipe.recipe_id
-      )
+      previousRecipes.filter((item) => item.recipe_id !== recipe.recipe_id),
     );
 
-
     // Add to Currently Cooking
-    setCurrentlyCooking((previousRecipes) => [
-      ...previousRecipes,
-      recipe
-    ]);
+    setCurrentlyCooking((previousRecipes) => [...previousRecipes, recipe]);
   };
-
 
   // ==============================
   // SEARCH
   // ==============================
 
   const filteredRecipes = recipes.filter((recipe) => {
-
     const search = searchText.toLowerCase().trim();
 
     if (!search) {
@@ -133,16 +108,10 @@ function App() {
     }
 
     return (
-      recipe.recipe_name
-        .toLowerCase()
-        .includes(search)
-      ||
-      recipe.short_description
-        .toLowerCase()
-        .includes(search)
+      recipe.recipe_name.toLowerCase().includes(search) ||
+      recipe.short_description.toLowerCase().includes(search)
     );
   });
-
 
   // ==============================
   // RENDER
@@ -150,66 +119,42 @@ function App() {
 
   return (
     <div className="app">
-
-      <Navbar
-        searchText={searchText}
-        setSearchText={setSearchText}
-      />
-
+      <Navbar searchText={searchText} setSearchText={setSearchText} />
 
       <main>
-
         <Banner />
-
 
         {/* OUR RECIPES INTRO */}
 
-        <section
-          className="about-section"
-          id="about"
-        >
-
+        <section className="about-section" id="about">
           <h2>Our Recipes</h2>
 
           <p>
-            Discover delicious recipes with simple ingredients,
-            easy preparation times and useful calorie information.
-            Choose your favorite recipe and start cooking today!
+            Discover delicious recipes with simple ingredients, easy preparation
+            times and useful calorie information. Choose your favorite recipe
+            and start cooking today!
           </p>
-
         </section>
-
 
         {/* RECIPE SECTION */}
 
-        <section
-          className="recipes-section"
-          id="recipes"
-        >
-
+        <section className="recipes-section" id="recipes">
           <RecipeList
             recipes={filteredRecipes}
             onWantToCook={handleWantToCook}
           />
-
 
           <CookingSidebar
             wantToCook={wantToCook}
             currentlyCooking={currentlyCooking}
             onPreparing={handlePreparing}
           />
-
         </section>
-
       </main>
-
 
       {/* TOAST */}
 
-      <Toast
-        message={toastMessage}
-      />
-
+      <Toast message={toastMessage} />
     </div>
   );
 }

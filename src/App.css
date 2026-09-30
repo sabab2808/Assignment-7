@@ -32,7 +32,6 @@ a {
   color: inherit;
 }
 
-
 /* ========================================
    APP
 ======================================== */
@@ -41,7 +40,6 @@ a {
   width: 100%;
   min-height: 100vh;
 }
-
 
 /* ========================================
    NAVBAR
@@ -90,7 +88,6 @@ a {
   gap: 12px;
 }
 
-
 /* Search */
 
 .search-box {
@@ -129,7 +126,6 @@ a {
   color: #77717f;
 }
 
-
 /* Profile */
 
 .profile-button {
@@ -147,7 +143,6 @@ a {
 
   color: #172232;
 }
-
 
 /* ========================================
    HERO
@@ -176,11 +171,7 @@ a {
 
   inset: 0;
 
-  background:
-    linear-gradient(
-      rgba(22, 13, 38, 0.45),
-      rgba(22, 13, 38, 0.72)
-    );
+  background: linear-gradient(rgba(22, 13, 38, 0.45), rgba(22, 13, 38, 0.72));
 }
 
 .banner-content {
@@ -224,7 +215,6 @@ a {
 
   color: #ffffff;
 }
-
 
 /* ========================================
    HERO BUTTONS
@@ -279,7 +269,6 @@ a {
   color: #211936;
 }
 
-
 /* ========================================
    OUR RECIPES INTRO
 ======================================== */
@@ -314,7 +303,6 @@ a {
   line-height: 1.8;
 }
 
-
 /* ========================================
    RECIPE SECTION
 ======================================== */
@@ -335,7 +323,6 @@ a {
   align-items: start;
 }
 
-
 /* ========================================
    RECIPE GRID
 ======================================== */
@@ -343,12 +330,10 @@ a {
 .recipe-grid {
   display: grid;
 
-  grid-template-columns:
-    repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 
   gap: 18px;
 }
-
 
 /* ========================================
    RECIPE CARD
@@ -373,12 +358,10 @@ a {
 }
 
 .recipe-card:hover {
-  box-shadow:
-    0 8px 25px rgba(32, 23, 53, 0.08);
+  box-shadow: 0 8px 25px rgba(32, 23, 53, 0.08);
 
   transform: translateY(-2px);
 }
-
 
 /* Recipe image */
 
@@ -395,7 +378,6 @@ a {
 
   margin-bottom: 15px;
 }
-
 
 /* Content */
 
@@ -419,7 +401,6 @@ a {
   min-height: 40px;
 }
 
-
 /* Divider */
 
 .divider {
@@ -431,7 +412,6 @@ a {
 
   margin: 14px 0;
 }
-
 
 /* Ingredients */
 
@@ -455,7 +435,6 @@ a {
   min-height: 65px;
 }
 
-
 /* Recipe info */
 
 .recipe-info {
@@ -477,7 +456,6 @@ a {
 
   gap: 6px;
 }
-
 
 /* Cook button */
 
@@ -507,7 +485,6 @@ a {
   transform: translateY(-1px);
 }
 
-
 /* ========================================
    SIDEBAR
 ======================================== */
@@ -525,7 +502,6 @@ a {
 
   overflow: hidden;
 }
-
 
 /* Sidebar section */
 
@@ -554,7 +530,6 @@ a {
 
   margin: 0 auto 12px;
 }
-
 
 /* ========================================
    TABLE HEADER
@@ -587,7 +562,6 @@ a {
 
   padding-left: 8px;
 }
-
 
 /* ========================================
    WANT TO COOK ROW
@@ -646,7 +620,6 @@ a {
   font-weight: 600;
 }
 
-
 /* ========================================
    CURRENTLY COOKING
 ======================================== */
@@ -681,7 +654,6 @@ a {
   color: #706b74;
 }
 
-
 /* ========================================
    TOTAL
 ======================================== */
@@ -712,7 +684,6 @@ a {
   color: #302a39;
 }
 
-
 /* ========================================
    EMPTY
 ======================================== */
@@ -726,7 +697,6 @@ a {
 
   font-size: 10px;
 }
-
 
 /* ========================================
    NO SEARCH RESULTS
@@ -752,7 +722,6 @@ a {
   color: #888;
 }
 
-
 /* ========================================
    TOAST
 ======================================== */
@@ -776,14 +745,12 @@ a {
 
   font-size: 12px;
 
-  box-shadow:
-    0 5px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 
   animation: toastIn 0.25s ease;
 }
 
 @keyframes toastIn {
-
   from {
     opacity: 0;
     transform: translateY(10px);
@@ -793,28 +760,22 @@ a {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
-
 
 /* ========================================
    RESPONSIVE
 ======================================== */
 
 @media (max-width: 1100px) {
-
   .navbar,
   .banner,
   .about-section,
   .recipes-section {
     width: calc(100% - 60px);
   }
-
 }
 
-
 @media (max-width: 850px) {
-
   .nav-links {
     gap: 15px;
     margin-left: 20px;
@@ -827,12 +788,9 @@ a {
   .sidebar {
     width: 100%;
   }
-
 }
 
-
 @media (max-width: 650px) {
-
   .navbar {
     height: auto;
 
@@ -872,5 +830,4 @@ a {
   .recipe-grid {
     grid-template-columns: 1fr;
   }
-
 }
